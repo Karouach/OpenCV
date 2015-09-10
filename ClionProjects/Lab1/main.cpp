@@ -12,4 +12,5 @@ int main( int argc, char** argv )
     cvReleaseImage(&img);
     cvDestroyWindow("blob");
     return 0;
+
 }
