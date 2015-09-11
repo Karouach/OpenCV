@@ -4,7 +4,9 @@
 
     int slider_position = 0;
     CvCapture* cvCapture = NULL;
+    int count = 0;
     void onTrackBarSlide(int pos) {
+        count = pos;
         cvSetCaptureProperty(cvCapture, CV_CAP_PROP_POS_FRAMES, pos);
     }
 
@@ -20,8 +22,10 @@ int main( int argc, char** argv ) {
             while (1){
             frameImage = cvQueryFrame(cvCapture);
                 if(!frameImage)break;
+                cvSetTrackbarPos("Position", "Blob", count);
                 cvShowImage("Blob", frameImage);
                 char c = cvWaitKey(33);
+                count ++;
                 if(c == 27 ) break;
             }
     cvReleaseCapture(&cvCapture);
