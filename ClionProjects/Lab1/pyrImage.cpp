@@ -9,8 +9,9 @@ int main( int argc, char** argv ) {
     cvShowImage("Input", input);
 
     cvNamedWindow("Output", 0);
-    IplImage *output = cvCreateImage(cvGetSize(input), IPL_DEPTH_8U, 3);
-    cvSmooth(input, output, CV_GAUSSIAN_5x5, 3, 3);
+    IplImage *output = cvCreateImage(cvSize(input->width/2, input->height/2), input->depth, input->nChannels);
+    assert(input->width%2 == 0 && input->height%2==0);
+    cvPyrDown(input, output);
     cvShowImage("Output", output);
 
     cvWaitKey(0);
