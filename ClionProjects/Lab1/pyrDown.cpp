@@ -14,10 +14,9 @@ void example(Mat &image){
    namedWindow("Output", 0);
    imshow("Input", image);
    Mat out;
-    GaussianBlur(image, out, Size(5, 5), 3, 3);
-    GaussianBlur(out, out, Size(5, 5), 3,3);
-    imshow("Output", out);
-    waitKey(0);
+   pyrDown(image, out);
+   imshow("Output", out);
+   waitKey(0);
 
 }
 void help(){
