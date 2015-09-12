@@ -8,6 +8,7 @@ using namespace cv;
 
 int main( int argc, char** argv ) {
     cv::Mat img = imread(argv[1], -1);
+    //cv::Mat img = imread(argv[1], 0);
     if(img.empty()){
         std::cerr << "Couldnt open Image" << argv[1] << std::endl;
         std::cerr << "Call ./Lab1 Blob.jpg"<< std::endl;
