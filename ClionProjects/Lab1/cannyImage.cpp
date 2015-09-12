@@ -8,33 +8,29 @@
 using namespace cv;
 using namespace std;
 
-
-void example(Mat &image){
-   namedWindow("Input", 0);
-   namedWindow("Output", 0);
-   imshow("Input", image);
-   Mat out;
-   pyrDown(image, out);
-   imshow("Output", out);
-   waitKey(0);
-
-}
 void help(){
     cout << "Call ./Lab1 blob.jpg" << endl;
 
 }
 
-
-
 int main( int argc, char** argv ) {
-
+    Mat img_rgb = imread(argv[1]);
     help();
-    cv::Mat img = imread(argv[1],-1);
-    if(img.empty()){
+    if(img_rgb.empty()){
         std::cerr << "Cant Open" << argv[1] << std::endl;
         return -1;
+
     }
-    example(img);
+    Mat img_gry, img_cny;
+    cvtColor(img_rgb, img_gry, CV_BGR2GRAY);
+    namedWindow("Original", 0);
+    imshow("Original", img_rgb);
+    namedWindow("Gray", 0);
+    namedWindow("Canny", 0);
+    imshow("Gray", img_gry);
+    Canny(img_gry, img_cny, 10, 100, 3, true);
+    imshow("Canny", img_cny);
+    waitKey(0);
 
 
 }
